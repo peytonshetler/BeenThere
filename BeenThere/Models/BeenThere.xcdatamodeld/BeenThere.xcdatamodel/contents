@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="BTLocation" representedClassName="BTLocation" syncable="YES">
+        <attribute name="administrativeArea" attributeType="String" defaultValueString=""/>
+        <attribute name="country" attributeType="String" defaultValueString=""/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="locality" attributeType="String" defaultValueString=""/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="phoneNumber" attributeType="String" defaultValueString=""/>
+        <attribute name="postalCode" attributeType="String" defaultValueString=""/>
+        <attribute name="subThoroughfare" attributeType="String" defaultValueString=""/>
+        <attribute name="thoroughfare" attributeType="String" defaultValueString=""/>
+        <attribute name="url" attributeType="String" defaultValueString=""/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTPlace" inverseName="location" inverseEntity="BTPlace"/>
+    </entity>
+    <entity name="BTPlace" representedClassName="BTPlace" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="note" optional="YES" attributeType="String" defaultValueString=""/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTLocation" inverseName="place" inverseEntity="BTLocation"/>
+        <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BTTag" inverseName="places" inverseEntity="BTTag"/>
+    </entity>
+    <entity name="BTTag" representedClassName="BTTag" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String" defaultValueString=""/>
+        <relationship name="places" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BTPlace" inverseName="tag" inverseEntity="BTPlace"/>
+    </entity>
+    <elements>
+        <element name="BTPlace" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="BTLocation" positionX="-54" positionY="-9" width="128" height="194"/>
+        <element name="BTTag" positionX="-36" positionY="9" width="128" height="74"/>
+    </elements>
+</model>
