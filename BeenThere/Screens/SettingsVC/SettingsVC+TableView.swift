@@ -90,6 +90,17 @@ extension SettingsVC {
         }
     }
     
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        configureFooterView(section: section)
+    }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let sectionType = SettingsSection(rawValue: section)
+        
+        return sectionType == .app ? 40 : 20
+    }
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         configureHeaderView(section: section)
     }
@@ -128,6 +139,38 @@ extension SettingsVC {
         }
         
         return headerView
+    }
+    
+    func configureFooterView(section: Int) -> UIView? {
+        let sectionType = SettingsSection(rawValue: section)
+        let footerView = UIView()
+        let label = UILabel()
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        footerView.addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: footerView.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: footerView.trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: footerView.bottomAnchor)
+        ])
+        
+        label.textAlignment = .center
+        label.textColor = .secondaryLabel
+        label.withRoundedFont(size: 18)
+        footerView.backgroundColor = .clear
+        
+        if sectionType == .greeting {
+            label.text = ""
+        } else if sectionType == .info {
+            label.text = ""
+        } else {
+            if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+                label.text = "version \(version)"
+            }
+        }
+        
+        return footerView
     }
 
 }

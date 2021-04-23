@@ -240,12 +240,12 @@
 		7942E17C2630C6B700CEC9A4 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				7987088626325FB200F389EF /* MapSearchVC */,
+				7987088326325F9800F389EF /* PlacesVC */,
+				7987088226325F8100F389EF /* TagSelectVC */,
 				7942E1A52630C81900CEC9A4 /* PlaceForm */,
-				7942E1A22630C80E00CEC9A4 /* MapSearchResultsCell.swift */,
-				7942E19F2630C80500CEC9A4 /* PlaceCell.swift */,
 				7942E1922630C7CD00CEC9A4 /* Details */,
 				7942E18F2630C7C300CEC9A4 /* GreetingCell.swift */,
-				7942E18C2630C7B500CEC9A4 /* TagSelectCell.swift */,
 				7942E1832630C79800CEC9A4 /* BTBasicTVCell.swift */,
 				7942E1822630C79800CEC9A4 /* BTSymbolAndLabelTVCell.swift */,
 				7942E1812630C79800CEC9A4 /* BTTextTVCell.swift */,
@@ -388,6 +388,30 @@
 				7942E2092630CD4100CEC9A4 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7987088226325F8100F389EF /* TagSelectVC */ = {
+			isa = PBXGroup;
+			children = (
+				7942E18C2630C7B500CEC9A4 /* TagSelectCell.swift */,
+			);
+			path = TagSelectVC;
+			sourceTree = "<group>";
+		};
+		7987088326325F9800F389EF /* PlacesVC */ = {
+			isa = PBXGroup;
+			children = (
+				7942E19F2630C80500CEC9A4 /* PlaceCell.swift */,
+			);
+			path = PlacesVC;
+			sourceTree = "<group>";
+		};
+		7987088626325FB200F389EF /* MapSearchVC */ = {
+			isa = PBXGroup;
+			children = (
+				7942E1A22630C80E00CEC9A4 /* MapSearchResultsCell.swift */,
+			);
+			path = MapSearchVC;
 			sourceTree = "<group>";
 		};
 		79F1C3562630B49200CBDD2B = {
