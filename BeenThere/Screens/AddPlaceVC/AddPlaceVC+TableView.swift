@@ -141,7 +141,7 @@ extension AddPlaceVC {
         
         switch item {
         case .type:
-            let destVC = TagSelectVC()
+            let destVC = TagSelectVC(tag: newTag)
             destVC.delegate = self
             navigationController?.pushViewController(destVC, animated: true)
         case .name, .notes, .favorite: return ()

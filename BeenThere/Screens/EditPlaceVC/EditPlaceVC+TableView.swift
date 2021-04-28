@@ -26,7 +26,7 @@ extension EditPlaceVC {
                 cell.set(itemType: .notes, delegate: self, previousNotes: self.note)
                 
                 return cell
-            case .type:
+            case .tag:
                 let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTagCell.identifier, for: indexPath) as! PlaceTagCell
                 
                 let tag = self.newTag != nil ? self.newTag : self.currentTag
@@ -97,9 +97,8 @@ extension EditPlaceVC {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         
         switch item {
-        case .type:
-            let tag = newTag != nil ? newTag! : currentTag
-            let destVC = TagSelectVC(place: place, tag: tag)
+        case .tag:
+            let destVC = TagSelectVC(place: place, tag: newTag)
             destVC.delegate = self
             navigationController?.pushViewController(destVC, animated: true)
         case .name, .notes, .favorite: return ()
@@ -109,13 +108,13 @@ extension EditPlaceVC {
 
 enum EditSection: CaseIterable {
     case nameAndNotes
-    case type
+    case tag
     case favorite
 
     var items: [EditItem] {
         switch self {
         case .nameAndNotes: return [.name, .notes]
-        case .type: return [.type]
+        case .tag: return [.tag]
         case .favorite: return [.favorite]
         }
     }
@@ -124,6 +123,6 @@ enum EditSection: CaseIterable {
 enum EditItem: CaseIterable {
     case name
     case notes
-    case type
+    case tag
     case favorite
 }

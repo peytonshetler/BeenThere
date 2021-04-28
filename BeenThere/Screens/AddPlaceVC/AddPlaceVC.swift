@@ -26,11 +26,13 @@ class AddPlaceVC: UITableViewController {
 
     var name: String = ""
     var note: String?
-    var tag: BTTag?
+    var newTag: BTTag?
     var isFavorite: Bool = false
     
+    var tagChanged: Bool = false
+    
     var shouldEnable: Bool {
-        return (!name.isEmpty && tag != nil && tag!.id != nil && item != nil) ? true : false
+        return (!name.isEmpty && tagChanged && item != nil) ? true : false
     }
     
     func handleAddButton() {
@@ -94,7 +96,7 @@ class AddPlaceVC: UITableViewController {
             return
         }
         
-        guard let unwrappedTag = tag else {
+        guard let unwrappedTag = newTag else {
             presentBTErrorAlertOnMainThread(error: .generalError, completion: nil)
             return
         }
@@ -114,10 +116,22 @@ class AddPlaceVC: UITableViewController {
 
 extension AddPlaceVC: NameCellDelegate, NoteCellDelegate, FavoriteCellDelegate, TagSelectDelegate {
     
-    func didSelectTag(tag: BTTag) {
-        self.tag = tag
-        let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
-        tagCell.label.text = tag.name
+    func didSelectTag(tag: BTTag?) {
+        
+        if tag != nil {
+            self.newTag = tag!
+            let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
+            tagCell.label.text = tag!.name
+            
+            tagChanged = true
+        } else {
+            self.newTag = nil
+            let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
+            tagCell.label.text = "Select a Tag"
+            
+            tagChanged = false
+        }
+        
         handleAddButton()
     }
     

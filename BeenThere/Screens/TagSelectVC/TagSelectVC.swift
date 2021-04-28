@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 protocol TagSelectDelegate {
-    func didSelectTag(tag: BTTag)
+    func didSelectTag(tag: BTTag?)
 }
 
 
@@ -17,8 +17,10 @@ class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
     let rowHeight: CGFloat = 50
+    
     enum TagSection { case main }
     var dataSource: UITableViewDiffableDataSource<TagSection, NSManagedObjectID>!
+    
     var emptyStateView: BTEmptyStateView?
     
     weak var actionToEnable : UIAlertAction?

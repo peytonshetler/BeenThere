@@ -62,6 +62,7 @@ class EditPlaceVC: UITableViewController {
         
         self.name = place.name
         self.currentTag = place.tag != nil ? place.tag! : nil
+        self.newTag = currentTag
         self.isFavorite = place.isFavorite
         self.note = place.note
     }
@@ -140,13 +141,22 @@ extension EditPlaceVC: NameCellDelegate, NoteCellDelegate, FavoriteCellDelegate,
         handleAddButton()
     }
     
-    func didSelectTag(tag: BTTag) {
-        tagChanged = true
+    func didSelectTag(tag: BTTag?) {
 
-        self.newTag = tag
-        let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
-        tagCell.label.text = tag.name
-//        place.tag = tag
+        if tag != nil {
+            self.newTag = tag!
+            let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
+            tagCell.label.text = tag!.name
+            
+            tagChanged = true
+        } else {
+            self.newTag = nil
+            let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
+            tagCell.label.text = "Select a Tag"
+            
+            tagChanged = false
+        }
+
         handleAddButton()
     }
     

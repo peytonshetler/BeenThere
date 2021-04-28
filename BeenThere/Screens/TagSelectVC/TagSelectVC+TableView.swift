@@ -25,19 +25,34 @@ extension TagSelectVC {
         if !(fetchedResultsController.fetchedObjects ?? []).isEmpty {
             
             let tag = fetchedResultsController.fetchedObjects![indexPath.row]
-            delegate?.didSelectTag(tag: tag)
             
-            
-            if selectedTagIndexPath != nil {
-                let previousTagCell = tableView.cellForRow(at: selectedTagIndexPath!) as! TagSelectCell
+            if let selectedTagIndexPath = selectedTagIndexPath, selectedTagIndexPath == indexPath {
+                // selected ALREADY selected cell
+                print("same tag")
+                
+                // Handle de-checking of previous cell
+                let previousTagCell = tableView.cellForRow(at: selectedTagIndexPath) as! TagSelectCell
                 previousTagCell.hideCheck()
+                
+                delegate?.didSelectTag(tag: nil)
+                
+                return
+            } else {
+                // selected NEW cell
+                delegate?.didSelectTag(tag: tag)
+                
+                // Handle de-checking of previous cell
+                if selectedTagIndexPath != nil {
+                    let previousTagCell = tableView.cellForRow(at: selectedTagIndexPath!) as! TagSelectCell
+                    previousTagCell.hideCheck()
+                }
+                
+                let newTagCell = tableView.cellForRow(at: indexPath) as! TagSelectCell
+                newTagCell.showCheck()
+                
+                selectedTag = tag
+                selectedTagIndexPath = indexPath
             }
-            
-            let newTagCell = tableView.cellForRow(at: indexPath) as! TagSelectCell
-            newTagCell.showCheck()
-            
-            selectedTag = tag
-            selectedTagIndexPath = indexPath
         }
     }
     
