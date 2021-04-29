@@ -69,7 +69,7 @@ class FirstTimeUserVC: UIViewController {
             Thanks for using BeenThere!
             If you have any suggestions or encounter any issues, please don't hesitate to reach out via the Settings page!
 
-            -Peyton, Developer of BeenThere
+            -Peyton, Creator
         """
         
         messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
