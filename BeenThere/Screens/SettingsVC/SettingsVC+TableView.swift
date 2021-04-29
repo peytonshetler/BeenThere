@@ -257,21 +257,21 @@ enum SettingsItem: CaseIterable, CustomStringConvertible {
         case .greeting, .contact, .review: return ""
         case .why:
             return """
-                Why did I build Been There? Great question. Originally, it was a tool for touring musicians to remember the great places they'd found while on the road. Since then, the vision has grown to become a tool that can be used by anyone.
+                Why did I build BeenThere? Great question. Originally, it was a tool for touring musicians to remember the great places they'd found while on the road. Since then, the vision has grown to become a tool that can be used by anyone.
 
-                My hopes are that this tool would create enough convenience that users would be free to spend less time looking at a screen and more time with each other.
+                My hopes are that this tool would create enough convenience that users have more time with each other.
             """
         case .colophon:
             return """
-                Been There was written entirely in Swift using Apple's Xcode IDE. The UI is entirely programmatic using UIKit, no storyboards.
+                BeenThere was written entirely in Swift using Apple's Xcode IDE. The UI is entirely programmatic via UIKit (no storyboards were harmed in the making of this app).
 
                 For those interested, it was built on a 13" 2019 Macbook Pro with 8GB of ram and 2.4 GHz Quad-Core Intel i5.
             """
         case .acknowledgements:
             return """
-                Been There was developed independently by me, Peyton Shetler.
+                BeenThere was developed independently by me, Peyton Shetler.
 
-                Along the way, I've had so much support in the creation of this app. I thank God for the oppurtunity to create and for inspiring me in the times when I felt I had nothing left to give.  And, of course, I want to thank my beautiful wife, who gladly sacraficed time together for me to finish this labor of love. She had so much input into this project and pushed me to finish it when I felt like giving up.  And I'd like to thank my friend and iOS mentor, Jacob. He's a wealth of knowledge and wisdom who went out of his way to teach a total stranger all about the crazy world of mobile development. And a huge thank you to all my friends that encouraged me during the development process and put up with all my feature questions.
+                Along the way, I've had so much support in the creation of this app. I thank God for the oppurtunity to create and for inspiring me in the times when I felt I had nothing left to give.  And, of course, I want to thank my beautiful wife, who gladly sacrificed time together for me to finish this labor of love. She had so much input into this project and pushed me to finish it when I felt like giving up.  And I'd like to thank my friend and iOS mentor, Jacob. He's a wealth of knowledge and wisdom who went out of his way to teach a total stranger all about the crazy world of mobile development. And a huge thank you to all my friends that encouraged me during the development process and put up with all my user/feature questions.
 
                 This project has been a long time coming and it's only the beginning!
             """

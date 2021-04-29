@@ -66,10 +66,10 @@ class FirstTimeUserVC: UIViewController {
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
         messageLabel.text = """
-            Thanks for using Been There!
+            Thanks for using BeenThere!
             If you have any suggestions or encounter any issues, please don't hesitate to reach out via the Settings page!
 
-            -Peyton, Developer/Creator
+            -Peyton, Developer of BeenThere
         """
         
         messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)

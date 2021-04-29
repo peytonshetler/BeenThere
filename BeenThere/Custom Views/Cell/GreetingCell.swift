@@ -45,7 +45,7 @@ class GreetingCell: UITableViewCell {
 
             If you experience any issues or want to leave a feature request, don't hesitate to reach out!
 
-            -Peyton, Developer of Been There.
+            -Peyton, Developer of BeenThere.
             """
         
         NSLayoutConstraint.activate([
