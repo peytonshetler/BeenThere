@@ -16,18 +16,18 @@ class PlaceCell: UITableViewCell {
     let favoriteImageView = UIImageView()
    
     let addressLabel = UILabel()
-    let typeImageView = UIImageView()
-    let typeLabel = UILabel()
+    let tagImageView = UIImageView()
+    let tagLabel = UILabel()
     
-    let typeConfig = Helpers.Symbol.imageConfig(size: 22, weight: .regular, scale: .small)
+    let tagConfig = Helpers.Symbol.imageConfig(size: 22, weight: .regular, scale: .small)
     let favoriteConfig = Helpers.Symbol.imageConfig(size: 30, weight: .regular, scale: .small)
     
-    let typeStackView = UIStackView()
+    let tagStackView = UIStackView()
     let mainStack = UIStackView()
     
     let padding: CGFloat = 20
     let favoriteImageSize: CGFloat = 26
-    let typeImageSize: CGFloat = 22
+    let tagImageSize: CGFloat = 22
     let locationImageSize: CGFloat = 20
     var views: [UIView] = []
     
@@ -48,7 +48,7 @@ class PlaceCell: UITableViewCell {
         self.place = place
         
         nameLabel.text = place.name
-        typeLabel.text = place.tag != nil ? place.tag!.name : ""
+        tagLabel.text = place.tag != nil ? place.tag!.name : ""
         
         let city = place.location != nil ? place.location!.locality : ""
         let state = place.location != nil ? place.location!.administrativeArea : ""
@@ -89,28 +89,28 @@ class PlaceCell: UITableViewCell {
         addressLabel.lineBreakMode = .byTruncatingTail
         addressLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         
-        typeImageView.image = UIImage(systemName: SFSymbols.tag, withConfiguration: typeConfig)
-        typeImageView.contentMode = .center
-        typeImageView.tintColor = .secondaryLabel
+        tagImageView.image = UIImage(systemName: SFSymbols.tag, withConfiguration: tagConfig)
+        tagImageView.contentMode = .center
+        tagImageView.tintColor = .secondaryLabel
 
-        typeLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        typeLabel.textAlignment = .left
-        typeLabel.textColor = .secondaryLabel
-        typeLabel.lineBreakMode = .byTruncatingTail
+        tagLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        tagLabel.textAlignment = .left
+        tagLabel.textColor = .secondaryLabel
+        tagLabel.lineBreakMode = .byTruncatingTail
         
-        typeStackView.axis = .horizontal
-        typeStackView.alignment = .leading
-        typeStackView.spacing = 4
-        typeStackView.sizeToFit()
-        typeStackView.addArrangedSubview(typeImageView)
-        typeStackView.addArrangedSubview(typeLabel)
+        tagStackView.axis = .horizontal
+        tagStackView.alignment = .leading
+        tagStackView.spacing = 4
+        tagStackView.sizeToFit()
+        tagStackView.addArrangedSubview(tagImageView)
+        tagStackView.addArrangedSubview(tagLabel)
         
         mainStack.axis = .vertical
         mainStack.distribution = .equalSpacing
         mainStack.sizeToFit()
         mainStack.addArrangedSubview(nameLabel)
         mainStack.addArrangedSubview(addressLabel)
-        mainStack.addArrangedSubview(typeStackView)
+        mainStack.addArrangedSubview(tagStackView)
     }
     
     
@@ -128,11 +128,11 @@ class PlaceCell: UITableViewCell {
             favoriteImageView.heightAnchor.constraint(equalToConstant: favoriteImageSize + 6),
             favoriteImageView.widthAnchor.constraint(equalToConstant: favoriteImageSize),
             
-            typeImageView.heightAnchor.constraint(equalToConstant: typeImageSize + 4),
-            typeImageView.widthAnchor.constraint(equalToConstant: typeImageSize),
-            typeImageView.centerYAnchor.constraint(equalTo: typeStackView.centerYAnchor),
+            tagImageView.heightAnchor.constraint(equalToConstant: tagImageSize + 4),
+            tagImageView.widthAnchor.constraint(equalToConstant: tagImageSize),
+            tagImageView.centerYAnchor.constraint(equalTo: tagStackView.centerYAnchor),
             
-            typeLabel.centerYAnchor.constraint(equalTo: typeStackView.centerYAnchor),
+            tagLabel.centerYAnchor.constraint(equalTo: tagStackView.centerYAnchor),
         ])
     }
 }

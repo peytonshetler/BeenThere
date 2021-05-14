@@ -201,20 +201,15 @@ extension SettingsVC: MFMailComposeViewControllerDelegate {
     
     
     func redirectToAppStore() {
-        self.tableView.deselectRow(at: [2, 1], animated: true)
-        presentBTErrorAlertOnMainThread(error: .featureComingSoon, completion: nil)
-        return
-        
-//        let appStoreId = "12345"
-//        let url = URL(string: "itms://itunes.apple.com/app/\(appStoreId)")
-//
-//        if let url = url {
-//            print("redirect to app store")
-//            //UIApplication.shared.open((url), options:[:], completionHandler: nil)
-//            self.tableView.deselectRow(at: [2, 1], animated: true)
-//        } else {
-//            self.tableView.deselectRow(at: [2, 1], animated: true)
-//        }
+        let appStoreId = "1564359482"
+        let url = URL(string: "itms://itunes.apple.com/app/\(appStoreId)")
+
+        if let url = url {
+            UIApplication.shared.open((url), options:[:], completionHandler: nil)
+            self.tableView.deselectRow(at: [2, 1], animated: true)
+        } else {
+            self.tableView.deselectRow(at: [2, 1], animated: true)
+        }
     }
 }
 

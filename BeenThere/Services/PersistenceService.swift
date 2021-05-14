@@ -114,7 +114,7 @@ class PersistenceService {
         return tag
     }
     
-    func savePlace(name: String, isFavorite: Bool = false, note: String?, tag: BTTag, item: MKMapItem, completion: @escaping completionWithEither) {
+    func savePlace(name: String, isFavorite: Bool = false, note: String?, tag: BTTag?, item: MKMapItem, completion: @escaping completionWithEither) {
         
         let place = BTPlace(context: context)
         place.name = name

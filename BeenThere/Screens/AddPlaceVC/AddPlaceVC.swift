@@ -32,7 +32,7 @@ class AddPlaceVC: UITableViewController {
     var tagChanged: Bool = false
     
     var shouldEnable: Bool {
-        return (!name.isEmpty && tagChanged && item != nil) ? true : false
+        return (!name.isEmpty && item != nil) ? true : false
     }
     
     func handleAddButton() {
@@ -76,7 +76,6 @@ class AddPlaceVC: UITableViewController {
     // MARK: - Navigation Bar
     func configureNavBar() {
         self.title = "New Place"
-        addButton.isEnabled = false
 
         navigationItem.rightBarButtonItem = addButton
     }
@@ -96,12 +95,7 @@ class AddPlaceVC: UITableViewController {
             return
         }
         
-        guard let unwrappedTag = newTag else {
-            presentBTErrorAlertOnMainThread(error: .generalError, completion: nil)
-            return
-        }
-        
-        persistence.savePlace(name: name, isFavorite: isFavorite, note: note, tag: unwrappedTag, item: item) { (result) in
+        persistence.savePlace(name: name, isFavorite: isFavorite, note: note, tag: newTag, item: item) { (result) in
 
             switch result {
             case .success:

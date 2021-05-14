@@ -110,13 +110,14 @@ class EditPlaceVC: UITableViewController {
         place.name = name
         place.isFavorite = isFavorite
         place.note = note
+        place.tag = newTag
         
-        guard let unwrappedTag = newTag else {
-            presentBTErrorAlertOnMainThread(error: .generalError, completion: nil)
-            return
-        }
+//        guard let unwrappedTag = newTag else {
+//            presentBTErrorAlertOnMainThread(error: .generalError, completion: nil)
+//            return
+//        }
         
-        place.tag = unwrappedTag
+//        place.tag = unwrappedTag
         
         persistence.save { [weak self] result in
             guard let self = self else { return }
@@ -147,16 +148,13 @@ extension EditPlaceVC: NameCellDelegate, NoteCellDelegate, FavoriteCellDelegate,
             self.newTag = tag!
             let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
             tagCell.label.text = tag!.name
-            
-            tagChanged = true
         } else {
             self.newTag = nil
             let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
             tagCell.label.text = "Select a Tag"
-            
-            tagChanged = false
         }
-
+        
+        tagChanged = true
         handleAddButton()
     }
     
