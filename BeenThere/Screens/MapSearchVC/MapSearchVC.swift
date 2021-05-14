@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-protocol HandleMapSearch: class {
+protocol HandleMapSearch: AnyObject {
     func dropPinZoomIn(mapItem: MKMapItem)
 }
 

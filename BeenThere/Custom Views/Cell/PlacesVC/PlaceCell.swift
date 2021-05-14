@@ -48,7 +48,7 @@ class PlaceCell: UITableViewCell {
         self.place = place
         
         nameLabel.text = place.name
-        tagLabel.text = place.tag != nil ? place.tag!.name : ""
+        tagLabel.text = place.tag != nil ? place.tag!.name : "--"
         
         let city = place.location != nil ? place.location!.locality : ""
         let state = place.location != nil ? place.location!.administrativeArea : ""

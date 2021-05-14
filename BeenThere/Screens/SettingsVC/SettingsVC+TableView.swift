@@ -202,7 +202,7 @@ extension SettingsVC: MFMailComposeViewControllerDelegate {
     
     func redirectToAppStore() {
         let appStoreId = "1564359482"
-        let url = URL(string: "itms://itunes.apple.com/app/\(appStoreId)")
+        let url = URL(string: "itms-apps://itunes.apple.com/us/app/id\(appStoreId)?action=write-review")
 
         if let url = url {
             UIApplication.shared.open((url), options:[:], completionHandler: nil)
