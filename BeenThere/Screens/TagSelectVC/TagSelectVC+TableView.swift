@@ -26,9 +26,8 @@ extension TagSelectVC {
             
             let tag = fetchedResultsController.fetchedObjects![indexPath.row]
             
+            // selected ALREADY selected cell
             if let selectedTagIndexPath = selectedTagIndexPath, selectedTagIndexPath == indexPath {
-                // selected ALREADY selected cell
-                print("same tag")
                 
                 // Handle de-checking of previous cell
                 let previousTagCell = tableView.cellForRow(at: selectedTagIndexPath) as! TagSelectCell

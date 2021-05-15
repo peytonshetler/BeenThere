@@ -17,7 +17,6 @@ class BottomSheetVC: UIViewController {
     
     
     let mainStackView = UIStackView()
-    let shadowImage = UIView()
     
     let nameAndButtonStackView = UIStackView()
     let nameLabel = UILabel()

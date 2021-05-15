@@ -58,12 +58,12 @@ extension PlacesVC {
 
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
             
-            let actionSheet = UIAlertController(title: nil, message: "Delete \(cell.place.name)?", preferredStyle: .actionSheet)
+            let actionSheet = UIAlertController(title: nil, message: "Delete \(cell.viewModel.name)?", preferredStyle: .actionSheet)
             
             let deleteButton = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
                 guard let self = self else { return }
                 
-                self.persistence.context.delete(cell.place)
+                self.persistence.context.delete(cell.viewModel.place)
     
                 do {
                     try self.persistence.context.save()
@@ -85,7 +85,7 @@ extension PlacesVC {
         }
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, completion) in
-            self.editButtonTapped(place: cell.place)
+            self.editButtonTapped(place: cell.viewModel.place)
         }
         
         editAction.backgroundColor = .systemGray2

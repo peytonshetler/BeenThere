@@ -44,7 +44,7 @@ extension FavoritesVC {
             guard let self = self else { return }
             
             let cell = tableView.cellForRow(at: indexPath) as! PlaceCell
-            cell.place.isFavorite = false
+            cell.viewModel.place.isFavorite = false
             
             do {
                 try self.persistence.context.save()

@@ -10,7 +10,8 @@ import UIKit
 class PlaceCell: UITableViewCell {
 
     static let identifier = "PlaceCell"
-    var place: BTPlace!
+    //var place: BTPlace!
+    var viewModel: PlacesCellViewModel!
     
     let nameLabel = UILabel()
     let favoriteImageView = UIImageView()
@@ -45,26 +46,14 @@ class PlaceCell: UITableViewCell {
     
     
     func set(place: BTPlace) {
-        self.place = place
         
-        nameLabel.text = place.name
-        tagLabel.text = place.tag != nil ? place.tag!.name : "--"
+        viewModel = PlacesCellViewModel(place: place)
         
-        let city = place.location != nil ? place.location!.locality : ""
-        let state = place.location != nil ? place.location!.administrativeArea : ""
+        nameLabel.text = viewModel.name
+        tagLabel.text = viewModel.tag
         
-        if (city.isEmpty || state.isEmpty) {
-            addressLabel.text = city + state
-        } else {
-            addressLabel.text = "\(city), \(state)"
-        }
-        
-        
-        if place.isFavorite == true {
-            favoriteImageView.image = UIImage(systemName: SFSymbols.favoriteFill, withConfiguration: favoriteConfig)
-        } else {
-            favoriteImageView.image = UIImage(systemName: SFSymbols.favorite, withConfiguration: favoriteConfig)
-        }
+        addressLabel.text = viewModel.address
+        favoriteImageView.image = viewModel.favoriteImage
     }
     
     

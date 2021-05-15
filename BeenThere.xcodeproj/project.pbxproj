@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		792B5C2E264F57DD00CDD608 /* PlacesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */; };
 		7942E1522630C1D900CEC9A4 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1512630C1D900CEC9A4 /* UIViewController+Ext.swift */; };
 		7942E1562630C20B00CEC9A4 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1552630C20B00CEC9A4 /* UILabel+Ext.swift */; };
 		7942E15A2630C2E500CEC9A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1592630C2E500CEC9A4 /* Constants.swift */; };
@@ -78,6 +79,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCellViewModel.swift; sourceTree = "<group>"; };
 		7942E1512630C1D900CEC9A4 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		7942E1552630C20B00CEC9A4 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		7942E1592630C2E500CEC9A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -163,6 +165,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		792B5C2F264F5B7800CDD608 /* Basic Cells */ = {
+			isa = PBXGroup;
+			children = (
+				7942E1832630C79800CEC9A4 /* BTBasicTVCell.swift */,
+				7942E1822630C79800CEC9A4 /* BTSymbolAndLabelTVCell.swift */,
+				7942E1812630C79800CEC9A4 /* BTTextTVCell.swift */,
+			);
+			path = "Basic Cells";
+			sourceTree = "<group>";
+		};
+		792B5C30264F5B9A00CDD608 /* SettingsVC */ = {
+			isa = PBXGroup;
+			children = (
+				7942E18F2630C7C300CEC9A4 /* GreetingCell.swift */,
+			);
+			path = SettingsVC;
+			sourceTree = "<group>";
+		};
 		7942E1502630BFDC00CEC9A4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,15 +260,13 @@
 		7942E17C2630C6B700CEC9A4 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				792B5C30264F5B9A00CDD608 /* SettingsVC */,
+				792B5C2F264F5B7800CDD608 /* Basic Cells */,
 				7987088626325FB200F389EF /* MapSearchVC */,
 				7987088326325F9800F389EF /* PlacesVC */,
 				7987088226325F8100F389EF /* TagSelectVC */,
 				7942E1A52630C81900CEC9A4 /* PlaceForm */,
 				7942E1922630C7CD00CEC9A4 /* Details */,
-				7942E18F2630C7C300CEC9A4 /* GreetingCell.swift */,
-				7942E1832630C79800CEC9A4 /* BTBasicTVCell.swift */,
-				7942E1822630C79800CEC9A4 /* BTSymbolAndLabelTVCell.swift */,
-				7942E1812630C79800CEC9A4 /* BTTextTVCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -402,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				7942E19F2630C80500CEC9A4 /* PlaceCell.swift */,
+				792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */,
 			);
 			path = PlacesVC;
 			sourceTree = "<group>";
@@ -565,6 +584,7 @@
 				7942E1602630C31400CEC9A4 /* BTError.swift in Sources */,
 				7942E1BB2630C86C00CEC9A4 /* TagSelectVC.swift in Sources */,
 				7942E1522630C1D900CEC9A4 /* UIViewController+Ext.swift in Sources */,
+				792B5C2E264F57DD00CDD608 /* PlacesCellViewModel.swift in Sources */,
 				7942E1EB2630C97B00CEC9A4 /* PlacesVC+UI.swift in Sources */,
 				7942E15D2630C30400CEC9A4 /* Helpers.swift in Sources */,
 				7942E1B02630C82E00CEC9A4 /* OtherCell.swift in Sources */,

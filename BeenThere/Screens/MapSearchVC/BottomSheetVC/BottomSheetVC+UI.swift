@@ -79,7 +79,6 @@ extension BottomSheetVC {
         view.addSubview(mainStackView)
         mainStackView.axis = .vertical
         mainStackView.alignment = .center
-        //mainStackView.addArrangedSubview(shadowImage)
         mainStackView.addArrangedSubview(nameAndButtonStackView)
         mainStackView.addArrangedSubview(separatorView)
         

@@ -69,7 +69,7 @@ class FirstTimeUserVC: UIViewController {
             Thanks for using BeenThere!
             If you have any suggestions or encounter any issues, please don't hesitate to reach out via the Settings page!
 
-            -Peyton, Creator
+            -Peyton, Developer
         """
         
         messageLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
@@ -104,16 +104,4 @@ class FirstTimeUserVC: UIViewController {
     @objc func actionButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
