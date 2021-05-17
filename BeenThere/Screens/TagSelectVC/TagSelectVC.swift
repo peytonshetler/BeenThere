@@ -12,14 +12,21 @@ protocol TagSelectDelegate {
     func didSelectTag(tag: BTTag?)
 }
 
+private enum Section { case main }
+
+private class BTTagSelectDiffibleDataSource: UITableViewDiffableDataSource<Section, NSManagedObjectID> {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+}
+
 
 class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
     
     // MARK: - Properties
     let rowHeight: CGFloat = 50
     
-    enum TagSection { case main }
-    var dataSource: UITableViewDiffableDataSource<TagSection, NSManagedObjectID>!
+    private var dataSource: BTTagSelectDiffibleDataSource!
     
     var emptyStateView: BTEmptyStateView?
     
@@ -78,13 +85,13 @@ class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference) {
         
-        guard let dataSource = tableView?.dataSource as? UITableViewDiffableDataSource<TagSection, NSManagedObjectID> else {
+        guard let dataSource = tableView?.dataSource as? UITableViewDiffableDataSource<Section, NSManagedObjectID> else {
             assertionFailure("The data source has not implemented snapshot support while it should")
             return
         }
         
-        var snapshot = snapshot as NSDiffableDataSourceSnapshot<TagSection, NSManagedObjectID>
-        let currentSnapshot = dataSource.snapshot() as NSDiffableDataSourceSnapshot<TagSection, NSManagedObjectID>
+        var snapshot = snapshot as NSDiffableDataSourceSnapshot<Section, NSManagedObjectID>
+        let currentSnapshot = dataSource.snapshot() as NSDiffableDataSourceSnapshot<Section, NSManagedObjectID>
 
         let reloadIdentifiers: [NSManagedObjectID] = snapshot.itemIdentifiers.compactMap { itemID in
             guard let currentIndex = currentSnapshot.indexOfItem(itemID), let index = snapshot.indexOfItem(itemID), index == currentIndex else {
@@ -105,13 +112,13 @@ class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
         let tableViewHasSections = tableView?.numberOfSections != 0
         let shouldAnimate = tableViewHasSections && tableViewVisible && viewHasLoaded
        
-        dataSource.apply(snapshot as NSDiffableDataSourceSnapshot<TagSection, NSManagedObjectID>, animatingDifferences: shouldAnimate)
+        dataSource.apply(snapshot as NSDiffableDataSourceSnapshot<Section, NSManagedObjectID>, animatingDifferences: shouldAnimate)
         viewHasLoaded = true
     }
     
     
     func configureDataSource() {
-        dataSource = UITableViewDiffableDataSource<TagSection, NSManagedObjectID>(tableView: tableView) { (tableView, indexPath, item) -> UITableViewCell? in
+        dataSource = BTTagSelectDiffibleDataSource(tableView: tableView) { (tableView, indexPath, item) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: TagSelectCell.identifier, for: indexPath) as! TagSelectCell
             cell.delegate = self
             let tag = self.fetchedResultsController.object(at: indexPath)
@@ -133,7 +140,7 @@ class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
     
     func updateSnapshot(on tags: [BTTag], isFiltering: Bool = false) {
         let objectIDs = BTTag.mapById(tags)
-        var snapshot = NSDiffableDataSourceSnapshot<TagSection, NSManagedObjectID>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, NSManagedObjectID>()
         snapshot.appendSections([.main])
         snapshot.appendItems(objectIDs)
         
