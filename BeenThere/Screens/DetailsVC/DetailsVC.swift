@@ -351,6 +351,8 @@ class DetailsVC: BTPrimaryViewController {
     
     func sharePlace(place: BTPlace) {
         
+        // conform BTPlace to Codable
+        
         let formatted = """
         \(place.name)
 

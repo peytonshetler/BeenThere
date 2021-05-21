@@ -45,7 +45,12 @@ extension TagSelectVC {
     
     @objc func showEmptyStateView() {
         let size = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: tableView.bounds.height)
-        emptyStateView = BTEmptyStateView(message: "No Tags", frame: size)
+        let message = """
+            No Tags.
+            
+            You can create a new tag using the \"plus\" button in the top right corner.
+        """
+        emptyStateView = BTEmptyStateView(message: message, frame: size)
 
         tableView.backgroundView = emptyStateView
     }

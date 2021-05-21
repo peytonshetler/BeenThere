@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		792B5C2E264F57DD00CDD608 /* PlacesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */; };
+		79361AAB265856E300ED43DC /* CoreDataCodableHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361AAA265856E300ED43DC /* CoreDataCodableHelpers.swift */; };
 		7942E1522630C1D900CEC9A4 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1512630C1D900CEC9A4 /* UIViewController+Ext.swift */; };
 		7942E1562630C20B00CEC9A4 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1552630C20B00CEC9A4 /* UILabel+Ext.swift */; };
 		7942E15A2630C2E500CEC9A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1592630C2E500CEC9A4 /* Constants.swift */; };
@@ -80,6 +81,7 @@
 
 /* Begin PBXFileReference section */
 		792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCellViewModel.swift; sourceTree = "<group>"; };
+		79361AAA265856E300ED43DC /* CoreDataCodableHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCodableHelpers.swift; sourceTree = "<group>"; };
 		7942E1512630C1D900CEC9A4 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		7942E1552630C20B00CEC9A4 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		7942E1592630C2E500CEC9A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -181,6 +183,14 @@
 				7942E18F2630C7C300CEC9A4 /* GreetingCell.swift */,
 			);
 			path = SettingsVC;
+			sourceTree = "<group>";
+		};
+		79361AA9265856C200ED43DC /* Transcoding Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				79361AAA265856E300ED43DC /* CoreDataCodableHelpers.swift */,
+			);
+			path = "Transcoding Helpers";
 			sourceTree = "<group>";
 		};
 		7942E1502630BFDC00CEC9A4 /* Extensions */ = {
@@ -469,6 +479,7 @@
 		79F1C37B2630B4D300CBDD2B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				79361AA9265856C200ED43DC /* Transcoding Helpers */,
 				7942E1F92630CC7100CEC9A4 /* BTPlace+CoreDataClass.swift */,
 				7942E1FA2630CC7100CEC9A4 /* BTPlace+CoreDataProperties.swift */,
 				7942E1FB2630CC7100CEC9A4 /* BTTag+CoreDataClass.swift */,
@@ -616,6 +627,7 @@
 				7942E1F12630C9AA00CEC9A4 /* BottomSheetVC+UI.swift in Sources */,
 				7942E1A02630C80500CEC9A4 /* PlaceCell.swift in Sources */,
 				7942E1E02630C95900CEC9A4 /* FavoritesVC.swift in Sources */,
+				79361AAB265856E300ED43DC /* CoreDataCodableHelpers.swift in Sources */,
 				7942E16F2630C68500CEC9A4 /* BTNavigationController.swift in Sources */,
 				7942E1D62630C93B00CEC9A4 /* AddPlaceVC+TableView.swift in Sources */,
 				7942E1562630C20B00CEC9A4 /* UILabel+Ext.swift in Sources */,

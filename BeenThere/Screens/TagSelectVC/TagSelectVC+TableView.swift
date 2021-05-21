@@ -66,4 +66,44 @@ extension TagSelectVC {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
+    
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let cell = tableView.cellForRow(at: indexPath) as! TagSelectCell
+
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completion) in
+            
+            let actionSheet = UIAlertController(title: nil, message: "Delete this tag?", preferredStyle: .actionSheet)
+            
+            let deleteButton = UIAlertAction(title: "Delete", style: .destructive) { [weak self] (action) in
+                guard let self = self else { return }
+                
+                self.persistence.context.delete(cell.placeTag)
+    
+                do {
+                    try self.persistence.context.save()
+                } catch {
+                    self.presentBTErrorAlertOnMainThread(error: .generalError, completion: nil)
+                }
+            }
+            
+            let cancelButton = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                actionSheet.dismiss(animated: true, completion: nil)
+            }
+
+            actionSheet.addAction(deleteButton)
+            actionSheet.addAction(cancelButton)
+            
+            self.present(actionSheet, animated: true, completion: nil)
+            
+            completion(true)
+        }
+    
+        
+        let configuration =  UISwipeActionsConfiguration(actions: [deleteAction])
+        configuration.performsFirstActionWithFullSwipe = false
+
+        return configuration
+    }
 }
