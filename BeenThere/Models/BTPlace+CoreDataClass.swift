@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 @objc(BTPlace)
@@ -62,4 +62,5 @@ public class BTPlace: NSManagedObject, Codable {
         try container.encodeIfPresent(location, forKey: .location)
         try container.encodeIfPresent(tag, forKey: .tag)
     }
+
 }

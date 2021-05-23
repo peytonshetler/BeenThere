@@ -28,7 +28,7 @@ public class BTTag: NSManagedObject, Codable {
     enum CodingKeys: String, CodingKey {
         case id
         case name
-        case places
+        //case places
     }
     
     public required convenience init(from decoder: Decoder) throws {
@@ -43,9 +43,9 @@ public class BTTag: NSManagedObject, Codable {
         id = try container.decode(UUID.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         
-        if let safePlaces = try container.decodeIfPresent([BTPlace].self, forKey: .places) {
-            places = NSSet(array: safePlaces)
-        }
+//        if let unwrappedPlaces = try container.decodeIfPresent([BTPlace].self, forKey: .places) {
+//            places = NSSet(array: unwrappedPlaces)
+//        }
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -53,6 +53,6 @@ public class BTTag: NSManagedObject, Codable {
         
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
-        try container.encodeIfPresent(places?.allObjects as? [BTPlace], forKey: .places)
+        //try container.encodeIfPresent(places?.allObjects as? [BTPlace], forKey: .places)
     }
 }

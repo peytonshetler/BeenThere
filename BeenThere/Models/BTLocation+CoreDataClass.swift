@@ -24,8 +24,9 @@ public class BTLocation: NSManagedObject, Codable {
         case subThoroughfare
         case thoroughfare
         case url
-        case place
+        //case place
     }
+    
     
     public required convenience init(from decoder: Decoder) throws {
         guard let context = decoder.userInfo[.managedObjectContext] as? NSManagedObjectContext else {
@@ -46,8 +47,9 @@ public class BTLocation: NSManagedObject, Codable {
         subThoroughfare = try container.decode(String.self, forKey: .subThoroughfare)
         thoroughfare = try container.decode(String.self, forKey: .thoroughfare)
         url = try container.decode(String.self, forKey: .url)
-        place = try container.decodeIfPresent(BTPlace.self, forKey: .place)
+        //place = try container.decodeIfPresent(BTPlace.self, forKey: .place)
     }
+    
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -63,6 +65,6 @@ public class BTLocation: NSManagedObject, Codable {
         try container.encode(thoroughfare, forKey: .thoroughfare)
         try container.encode(url, forKey: .url)
         
-        try container.encodeIfPresent(place, forKey: .place)
+        //try container.encodeIfPresent(place, forKey: .place)
     }
 }

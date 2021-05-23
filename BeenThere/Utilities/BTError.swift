@@ -19,10 +19,11 @@ enum BTError: String, Error {
     case duplicatePlace = "A place with that name already exists."
     case featureComingSoon = "This feature isn't quite ready. Be on the lookout in the next version!"
     case badInternetConnection = "Something went wrong. Are you sure you're connected to the internet?"
+    case sendingError = "Something went wrong while trying to share this place."
     
     var title: String {
         switch self {
-        case .generalError, .savingError, .errorRetrievingResults, .locationError, .cantSendEmail, .badInternetConnection: return "Uh-Oh"
+        case .generalError, .savingError, .sendingError, .errorRetrievingResults, .locationError, .cantSendEmail, .badInternetConnection: return "Uh-Oh"
         case .emptyNameField, .duplicatePlace: return "Whoops!"
         case .featureComingSoon: return "This is awkward 😅"
         }

@@ -351,15 +351,15 @@ class DetailsVC: BTPrimaryViewController {
     
     func sharePlace(place: BTPlace) {
         
-        // conform BTPlace to Codable
+        let sharedPlace = SharedPlace(place: place)
         
-        let formatted = """
-        \(place.name)
-
-        \(configureAddressMessage())
-        """
+        guard let url = SharedPlace.exportToURL(place: sharedPlace) else {
+            presentBTErrorAlertOnMainThread(error: .sendingError, completion: nil)
+            return
+        }
         
-        let activityVC = UIActivityViewController(activityItems: [formatted], applicationActivities: nil)
+        
+        let activityVC = UIActivityViewController(activityItems: ["Check out this cool place!", url], applicationActivities: nil)
         present(activityVC, animated: true)
     }
 }

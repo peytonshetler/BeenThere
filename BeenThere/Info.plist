@@ -2,6 +2,53 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>BeenThere Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.PeytonShetler.BeenThere.beenthere</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/beenthere</string>
+				</array>
+				<key>public.filename-extension</key>
+				<array>
+					<string>beenthere</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.PeytonShetler.BeenThere.beenthere</string>
+			</array>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>beenthere</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>BeenThere Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+		</dict>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

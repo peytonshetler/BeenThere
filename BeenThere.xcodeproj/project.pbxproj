@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		792B5C2E264F57DD00CDD608 /* PlacesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */; };
 		79361AAB265856E300ED43DC /* CoreDataCodableHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361AAA265856E300ED43DC /* CoreDataCodableHelpers.swift */; };
+		79361AB12659E98D00ED43DC /* SharedPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361AB02659E98D00ED43DC /* SharedPlace.swift */; };
+		79361AB32659ED1400ED43DC /* SharedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361AB22659ED1400ED43DC /* SharedLocation.swift */; };
+		79361AB52659ED2C00ED43DC /* SharedTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361AB42659ED2C00ED43DC /* SharedTag.swift */; };
 		7942E1522630C1D900CEC9A4 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1512630C1D900CEC9A4 /* UIViewController+Ext.swift */; };
 		7942E1562630C20B00CEC9A4 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1552630C20B00CEC9A4 /* UILabel+Ext.swift */; };
 		7942E15A2630C2E500CEC9A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7942E1592630C2E500CEC9A4 /* Constants.swift */; };
@@ -82,6 +85,9 @@
 /* Begin PBXFileReference section */
 		792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCellViewModel.swift; sourceTree = "<group>"; };
 		79361AAA265856E300ED43DC /* CoreDataCodableHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCodableHelpers.swift; sourceTree = "<group>"; };
+		79361AB02659E98D00ED43DC /* SharedPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPlace.swift; sourceTree = "<group>"; };
+		79361AB22659ED1400ED43DC /* SharedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocation.swift; sourceTree = "<group>"; };
+		79361AB42659ED2C00ED43DC /* SharedTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTag.swift; sourceTree = "<group>"; };
 		7942E1512630C1D900CEC9A4 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		7942E1552630C20B00CEC9A4 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		7942E1592630C2E500CEC9A4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -191,6 +197,16 @@
 				79361AAA265856E300ED43DC /* CoreDataCodableHelpers.swift */,
 			);
 			path = "Transcoding Helpers";
+			sourceTree = "<group>";
+		};
+		79361AAF2659E96D00ED43DC /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				79361AB02659E98D00ED43DC /* SharedPlace.swift */,
+				79361AB22659ED1400ED43DC /* SharedLocation.swift */,
+				79361AB42659ED2C00ED43DC /* SharedTag.swift */,
+			);
+			path = Share;
 			sourceTree = "<group>";
 		};
 		7942E1502630BFDC00CEC9A4 /* Extensions */ = {
@@ -479,6 +495,7 @@
 		79F1C37B2630B4D300CBDD2B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				79361AAF2659E96D00ED43DC /* Share */,
 				79361AA9265856C200ED43DC /* Transcoding Helpers */,
 				7942E1F92630CC7100CEC9A4 /* BTPlace+CoreDataClass.swift */,
 				7942E1FA2630CC7100CEC9A4 /* BTPlace+CoreDataProperties.swift */,
@@ -593,6 +610,7 @@
 				7942E1982630C7E300CEC9A4 /* ActionButtonCell.swift in Sources */,
 				7942E18D2630C7B500CEC9A4 /* TagSelectCell.swift in Sources */,
 				7942E1602630C31400CEC9A4 /* BTError.swift in Sources */,
+				79361AB32659ED1400ED43DC /* SharedLocation.swift in Sources */,
 				7942E1BB2630C86C00CEC9A4 /* TagSelectVC.swift in Sources */,
 				7942E1522630C1D900CEC9A4 /* UIViewController+Ext.swift in Sources */,
 				792B5C2E264F57DD00CDD608 /* PlacesCellViewModel.swift in Sources */,
@@ -619,6 +637,7 @@
 				7942E2032630CC7100CEC9A4 /* BTLocation+CoreDataClass.swift in Sources */,
 				7942E1722630C69400CEC9A4 /* BTTabBarController.swift in Sources */,
 				7942E1DE2630C95900CEC9A4 /* FavoritesVC+SearchBar.swift in Sources */,
+				79361AB12659E98D00ED43DC /* SharedPlace.swift in Sources */,
 				7942E1BC2630C86C00CEC9A4 /* TagSelectVC+TableView.swift in Sources */,
 				7942E17F2630C76C00CEC9A4 /* BTEmptyStateView.swift in Sources */,
 				79F1C3632630B49300CBDD2B /* AppDelegate.swift in Sources */,
@@ -636,6 +655,7 @@
 				7942E1E92630C97B00CEC9A4 /* PlacesVC+TableView.swift in Sources */,
 				79F1C3652630B49300CBDD2B /* SceneDelegate.swift in Sources */,
 				7942E1772630C6A000CEC9A4 /* FirstTimeUserVC.swift in Sources */,
+				79361AB52659ED2C00ED43DC /* SharedTag.swift in Sources */,
 				7942E2022630CC7100CEC9A4 /* BTTag+CoreDataProperties.swift in Sources */,
 				7942E1C82630C90200CEC9A4 /* SettingsVC.swift in Sources */,
 			);
