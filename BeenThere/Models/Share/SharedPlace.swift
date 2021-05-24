@@ -7,6 +7,9 @@
 
 import Foundation
 
+typealias exportCompletion = (Result<URL?, BTError>) -> Void
+typealias importCompletion = (Result<SharedPlace, BTError>) -> Void
+
 struct SharedPlace: Codable {
     
     var id: UUID
@@ -56,18 +59,18 @@ extension SharedPlace {
     }
 
 
-    static func importData(from url: URL) {
+    static func importData(from url: URL, completion: @escaping importCompletion) {
 
         guard let data = try? Data(contentsOf: url) else {
-            print("ERROR WITH DATA")
+            completion(.failure(.readingError))
             return
         }
         
         do {
             let place = try JSONDecoder().decode(SharedPlace.self, from: data)
-            // decoding works, now need to convert to a ManagedObject!
+            completion(.success(place))
         } catch {
-            
+            completion(.failure(.readingError))
         }
 
       try? FileManager.default.removeItem(at: url)
