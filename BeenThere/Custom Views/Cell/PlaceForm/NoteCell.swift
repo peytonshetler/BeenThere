@@ -78,7 +78,7 @@ class NoteCell: UITableViewCell {
 extension NoteCell: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
+        
         let previousText = textView.text ?? ""
         let updatedText = NSString(string: previousText).replacingCharacters(in: range, with: text)
         

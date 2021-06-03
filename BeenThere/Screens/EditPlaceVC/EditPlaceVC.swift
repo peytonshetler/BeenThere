@@ -29,8 +29,9 @@ class EditPlaceVC: UITableViewController {
     
     var name: String!
     var note: String!
-    var currentTag: BTTag?
-    var newTag: BTTag?
+//    var currentTag: BTTag?
+//    var newTag: BTTag?
+    var selectedTags: [BTTag] = []
     var isFavorite: Bool!
     
     var tagChanged = false
@@ -61,10 +62,17 @@ class EditPlaceVC: UITableViewController {
         self.place = place
         
         self.name = place.name
-        self.currentTag = place.tag != nil ? place.tag! : nil
-        self.newTag = currentTag
         self.isFavorite = place.isFavorite
         self.note = place.note
+        
+        if place.tags != nil && place.tags!.count > 0 {
+            let tagArray = place.tags?.allObjects as? [BTTag]
+            
+            if tagArray != nil {
+                self.selectedTags = tagArray!
+            }
+            
+        }
     }
 
     init() {
@@ -110,7 +118,39 @@ class EditPlaceVC: UITableViewController {
         place.name = name
         place.isFavorite = isFavorite
         place.note = note
-        place.tag = newTag
+        
+        var tags: [BTTag] = []
+
+        if let unwrappedNote = note, !unwrappedNote.isEmpty {
+            place.note = note!
+            
+            let tagStrings = note!.getHashtags()
+            
+            for nameString in tagStrings {
+                
+                let existingTag = persistence.getTagIfExists(name: nameString)
+                
+                if existingTag != nil {
+                    tags.append(existingTag!)
+                } else {
+                    let newTag = BTTag(context: persistence.context)
+                    newTag.name = nameString
+                    
+                    tags.append(newTag)
+                }
+            }
+        }
+
+        
+        if tags.isEmpty {
+            place.tags = nil
+        } else if tags.count == 1 {
+            place.addToTags(tags[0])
+        } else {
+            
+            let tagSet = NSSet(array: tags)
+            place.addToTags(tagSet)
+        }
         
         persistence.save { [weak self] result in
             guard let self = self else { return }
@@ -135,21 +175,41 @@ extension EditPlaceVC: NameCellDelegate, NoteCellDelegate, FavoriteCellDelegate,
         handleAddButton()
     }
     
-    func didSelectTag(tag: BTTag?) {
+    func didSelectTags(tags: [BTTag]) {
         
         let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
         tagChanged = true
         
-        if tag != nil {
-            self.newTag = tag!
-            tagCell.label.text = tag!.name
+        // set selected tag aray to tags done
+        
+        // handle current/new tags done
+        
+        selectedTags = tags
+        
+        if tags.count > 0 {
+            tagCell.label.text = "\(tags.count) tags selected"
         } else {
-            self.newTag = nil
             tagCell.label.text = "Select a Tag"
         }
         
         handleAddButton()
     }
+    
+//    func didSelectTags(tag: BTTag?) {
+//
+//        let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
+//        tagChanged = true
+//
+//        if tag != nil {
+//            self.newTag = tag!
+//            tagCell.label.text = tag!.name
+//        } else {
+//            self.newTag = nil
+//            tagCell.label.text = "Select a Tag"
+//        }
+//
+//        handleAddButton()
+//    }
     
     func updateNote(text: String) {
         self.note = text

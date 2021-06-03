@@ -26,32 +26,32 @@ extension TagSelectVC {
             
             let tag = fetchedResultsController.fetchedObjects![indexPath.row]
             
-            // selected ALREADY selected cell
-            if let selectedTagIndexPath = selectedTagIndexPath, selectedTagIndexPath == indexPath {
-                
-                // Handle de-checking of previous cell
-                let previousTagCell = tableView.cellForRow(at: selectedTagIndexPath) as! TagSelectCell
-                previousTagCell.hideCheck()
-                
-                delegate?.didSelectTag(tag: nil)
-                
-                return
-            } else {
-                // selected NEW cell
-                delegate?.didSelectTag(tag: tag)
-                
-                // Handle de-checking of previous cell
-                if selectedTagIndexPath != nil {
-                    let previousTagCell = tableView.cellForRow(at: selectedTagIndexPath!) as! TagSelectCell
-                    previousTagCell.hideCheck()
-                }
-                
-                let newTagCell = tableView.cellForRow(at: indexPath) as! TagSelectCell
-                newTagCell.showCheck()
-                
-                selectedTag = tag
-                selectedTagIndexPath = indexPath
-            }
+            // selected an ALREADY selected cell
+//            if let selectedTagIndexPath = selectedTagIndexPath, selectedTagIndexPath == indexPath {
+//
+//                // Handle de-checking of previous cell
+//                let previousTagCell = tableView.cellForRow(at: selectedTagIndexPath) as! TagSelectCell
+//                previousTagCell.hideCheck()
+//
+//                delegate?.didSelectTag(tag: [nil])
+//
+//                return
+//            } else {
+//                // selected NEW cell
+//                delegate?.didSelectTag(tag: tag)
+//
+//                // Handle de-checking of previous cell
+//                if selectedTagIndexPath != nil {
+//                    let previousTagCell = tableView.cellForRow(at: selectedTagIndexPath!) as! TagSelectCell
+//                    previousTagCell.hideCheck()
+//                }
+//
+//                let newTagCell = tableView.cellForRow(at: indexPath) as! TagSelectCell
+//                newTagCell.showCheck()
+//
+//                selectedTag = tag
+//                selectedTagIndexPath = indexPath
+//            }
         }
     }
     

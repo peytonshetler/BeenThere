@@ -50,7 +50,7 @@ class PlaceCell: UITableViewCell {
         viewModel = PlacesCellViewModel(place: place)
         
         nameLabel.text = viewModel.name
-        tagLabel.text = viewModel.tag
+        tagLabel.text = "x \(viewModel.tags.count)"
         
         addressLabel.text = viewModel.address
         favoriteImageView.image = viewModel.favoriteImage

@@ -29,8 +29,7 @@ extension EditPlaceVC {
             case .tag:
                 let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTagCell.identifier, for: indexPath) as! PlaceTagCell
                 
-                let tag = self.newTag != nil ? self.newTag : self.currentTag
-                cell.set(itemType: .type, tag: tag)
+                cell.set(itemType: .tag, tagCount: self.selectedTags.count)
                 
                 return cell
             case .favorite:
@@ -98,7 +97,7 @@ extension EditPlaceVC {
         
         switch item {
         case .tag:
-            let destVC = TagSelectVC(place: place, tag: newTag)
+            let destVC = TagSelectVC(place: place, tags: selectedTags)
             destVC.delegate = self
             navigationController?.pushViewController(destVC, animated: true)
         case .name, .notes, .favorite: return ()

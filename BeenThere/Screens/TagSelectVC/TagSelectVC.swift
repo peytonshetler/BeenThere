@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 protocol TagSelectDelegate {
-    func didSelectTag(tag: BTTag?)
+    func didSelectTags(tags: [BTTag])
 }
 
 private enum Section { case main }
@@ -41,15 +41,17 @@ class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
     var place: BTPlace?
     var filteredTags: [BTTag] = []
     
-    var initialTag: BTTag?
-    var selectedTag: BTTag? {
+    var selectedTags: [BTTag] = [] {
         didSet {
-            if selectedTag != nil {
-                delegate?.didSelectTag(tag: selectedTag!)
-            }
+            delegate?.didSelectTags(tags: selectedTags)
+//            if selectedTags != nil {
+//                delegate?.didSelectTags(tags: selectedTags!)
+//            }
         }
     }
+    
     var selectedTagIndexPath: IndexPath?
+    var selectedTagIndexPaths: [IndexPath] = []
     
     var tagNames: [String] {
         return BTTag.mapByName(fetchedResultsController.fetchedObjects ?? [])
@@ -70,11 +72,11 @@ class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
     }
 
     
-    init(place: BTPlace? = nil, tag: BTTag? = nil) {
+    init(place: BTPlace? = nil, tags: [BTTag] = []) {
         super.init(style: .insetGrouped)
         self.place = place
         
-        selectedTag = tag
+        self.selectedTags = tags
     }
     
 
@@ -123,17 +125,19 @@ class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
             cell.delegate = self
             let tag = self.fetchedResultsController.object(at: indexPath)
             
-            var isSelectedTag: Bool = false
+            var isSelected: Bool = false
             
-            if self.selectedTag != nil {
-                isSelectedTag = self.selectedTag!.objectID === tag.objectID ? true : false
+            if self.selectedTags.count > 0 {
+                isSelected = self.selectedTags.contains(where: { $0.id == tag.id })
+                // OLD WAY
+                //isSelected = self.selectedTag!.objectID === tag.objectID ? true : false
             }
             
-            if isSelectedTag {
+            if isSelected {
                 self.selectedTagIndexPath = indexPath
             }
             
-            cell.set(tag: tag, shouldShowCheck: isSelectedTag)
+            cell.set(tag: tag, shouldShowCheck: isSelected)
             return cell
         }
     }
@@ -227,6 +231,6 @@ class TagSelectVC: UITableViewController, NSFetchedResultsControllerDelegate {
 extension TagSelectVC: TagSelectedDelegate {
     
     func tagSelected(tag: BTTag) {
-        selectedTag = tag
+        selectedTags.append(tag)
     }
 }

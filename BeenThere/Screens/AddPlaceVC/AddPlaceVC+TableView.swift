@@ -26,10 +26,10 @@ extension AddPlaceVC {
                 cell.set(itemType: .notes, delegate: self, previousNotes: nil)
                 
                 return cell
-            case .type:
+            case .tag:
                 let cell = tableView.dequeueReusableCell(withIdentifier: PlaceTagCell.identifier, for: indexPath) as! PlaceTagCell
                 
-                cell.set(itemType: .type, tag: nil)
+                cell.set(itemType: .tag, tagCount: self.selectedTags.count)
                 
                 return cell
             case .favorite:
@@ -140,8 +140,8 @@ extension AddPlaceVC {
         guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
         
         switch item {
-        case .type:
-            let destVC = TagSelectVC(tag: newTag)
+        case .tag:
+            let destVC = TagSelectVC(tags: selectedTags)
             destVC.delegate = self
             navigationController?.pushViewController(destVC, animated: true)
         case .name, .notes, .favorite: return ()
@@ -152,13 +152,13 @@ extension AddPlaceVC {
 
 enum FormSection: CaseIterable {
     case nameAndNotes
-    case type
+    case tag
     case favorite
 
     var items: [FormItem] {
         switch self {
         case .nameAndNotes: return [.name, .notes]
-        case .type: return [.type]
+        case .tag: return [.tag]
         case .favorite: return [.favorite]
         }
     }
@@ -167,6 +167,6 @@ enum FormSection: CaseIterable {
 enum FormItem: CaseIterable {
     case name
     case notes
-    case type
+    case tag
     case favorite
 }

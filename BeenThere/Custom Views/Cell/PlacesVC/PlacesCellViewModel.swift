@@ -13,7 +13,7 @@ struct PlacesCellViewModel {
     var place: BTPlace!
     
     var name: String
-    var tag: String
+    var tags: [BTTag] = []
     
     var address: String
     
@@ -27,7 +27,11 @@ struct PlacesCellViewModel {
         self.place = place
         
         name = place.name
-        tag = place.tag != nil ? place.tag!.name : "--"
+        
+        if place.tags != nil && place.tags!.count > 0 {
+            tags = place.tags!.allObjects as! [BTTag]
+        }
+        
         isFavorite = place.isFavorite
         
         let city = place.location != nil ? place.location!.locality : ""
