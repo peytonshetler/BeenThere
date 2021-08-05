@@ -56,7 +56,7 @@ class ActionButtonCell: UICollectionViewCell {
         case .navigate:
             imageView.image = UIImage(systemName: SFSymbols.locationFill, withConfiguration: config)
             imageView.tintColor = .systemBlue
-        case .map, .favorite, .note: return ()
+        case .map, .favorite, .note, .tag: return ()
         }
         
     }

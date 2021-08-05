@@ -44,97 +44,97 @@ class DetailsVC: BTPrimaryViewController {
         configureDataSource()
         updateSnapshot()
         
-        navigationController?.isToolbarHidden = false
+        //navigationController?.isToolbarHidden = false
         
         
-        configureTagCV()
-        configureTagDataSource()
-        updateTagSnapShot()
-        
-        let button = UIBarButtonItem(customView: tagCollectionView)
-        
-        toolbarItems = [ button]
+        //configureTagCV()
+//        configureTagDataSource()
+//        updateTagSnapShot()
+//
+//        let button = UIBarButtonItem(customView: tagCollectionView)
+//
+//        toolbarItems = [ button]
     }
     
     
-    func configureTagCV() {
-        tagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createTagLayout())
-        tagCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tagCollectionView.backgroundColor = .clear
-        
-        tagCollectionView.alwaysBounceVertical = false
-        tagCollectionView.alwaysBounceHorizontal = true
-        
-        tagCollectionView.register(TestTagCell.self, forCellWithReuseIdentifier: TestTagCell.identifier)
-        tagCollectionView.delegate = self
-        tagCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(tagCollectionView)
-        
-        NSLayoutConstraint.activate([
-            tagCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tagCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tagCollectionView.heightAnchor.constraint(equalToConstant: navigationController!.toolbar.frame.height)
-        ])
-    }
+//    func configureTagCV() {
+//        tagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createTagLayout())
+//        tagCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        tagCollectionView.backgroundColor = .clear
+//
+//        tagCollectionView.alwaysBounceVertical = false
+//        tagCollectionView.alwaysBounceHorizontal = true
+//
+//        tagCollectionView.register(TestTagCell.self, forCellWithReuseIdentifier: TestTagCell.identifier)
+//        tagCollectionView.delegate = self
+//        tagCollectionView.translatesAutoresizingMaskIntoConstraints = false
+//        view.addSubview(tagCollectionView)
+//
+//        NSLayoutConstraint.activate([
+//            tagCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            tagCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            tagCollectionView.heightAnchor.constraint(equalToConstant: navigationController!.toolbar.frame.height)
+//        ])
+//    }
     
     
-    func createTagLayout() -> UICollectionViewLayout {
-        
-        let sectionProvider = { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            
-            guard let self = self else { return nil }
-            
-            return self.createTestTagSection()
-        }
-        
-        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
-    }
+//    func createTagLayout() -> UICollectionViewLayout {
+//        
+//        let sectionProvider = { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+//            
+//            guard let self = self else { return nil }
+//            
+//            return self.createTestTagSection()
+//        }
+//        
+//        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+//    }
     
-    func createTestTagSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .estimated(40))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(40))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
-        
-        return section
-    }
+//    func createTestTagSection() -> NSCollectionLayoutSection {
+//        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .estimated(40))
+//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//
+//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(40))
+//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//
+//        let section = NSCollectionLayoutSection(group: group)
+//        section.orthogonalScrollingBehavior = .continuous
+//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
+//
+//        return section
+//    }
     
-    func createTestTagCellRegistration() -> UICollectionView.CellRegistration<TestTagCell, TagItem> {
-        return UICollectionView.CellRegistration<TestTagCell, TagItem> { (cell, indexPath, item) in
-
-            cell.set(tag: item)
-        }
-    }
+//    func createTestTagCellRegistration() -> UICollectionView.CellRegistration<TestTagCell, TagItem> {
+//        return UICollectionView.CellRegistration<TestTagCell, TagItem> { (cell, indexPath, item) in
+//
+//            cell.set(tag: item)
+//        }
+//    }
     
-    func updateTagSnapShot() {
-        var tagItems: [TagItem] = []
-        
-        let new = TagItem(managedTag: place.tag!)
-        
-        tagItems.append(new)
-        var snapshot = NSDiffableDataSourceSnapshot<TagSection, TagItem>()
-        snapshot.appendSections([.main])
-        snapshot.appendItems(tagItems)
-        
-        DispatchQueue.main.async { self.tagDataSource.apply(snapshot, animatingDifferences: false) }
-    }
+//    func updateTagSnapShot() {
+//        var tagItems: [TagItem] = []
+//
+//        let new = TagItem(managedTag: place.tag!)
+//
+//        tagItems.append(new)
+//        var snapshot = NSDiffableDataSourceSnapshot<TagSection, TagItem>()
+//        snapshot.appendSections([.main])
+//        snapshot.appendItems(tagItems)
+//
+//        DispatchQueue.main.async { self.tagDataSource.apply(snapshot, animatingDifferences: false) }
+//    }
     
     
     // MARK: - Data Source
-    func configureTagDataSource() {
-        let tagCell = createTestTagCellRegistration()
-        
-        tagDataSource = UICollectionViewDiffableDataSource<TagSection, TagItem>(collectionView: tagCollectionView) {
-            (collectionView, indexPath, item) -> UICollectionViewCell? in
-            
-            return collectionView.dequeueConfiguredReusableCell(using: tagCell, for: indexPath, item: item)
-        }
-    }
+//    func configureTagDataSource() {
+//        let tagCell = createTestTagCellRegistration()
+//
+//        tagDataSource = UICollectionViewDiffableDataSource<TagSection, TagItem>(collectionView: tagCollectionView) {
+//            (collectionView, indexPath, item) -> UICollectionViewCell? in
+//
+//            return collectionView.dequeueConfiguredReusableCell(using: tagCell, for: indexPath, item: item)
+//        }
+//    }
     
     
     
@@ -216,13 +216,13 @@ class DetailsVC: BTPrimaryViewController {
         }
     }
     
-//    func createTagCellRegistration() -> UICollectionView.CellRegistration<DetailTagCell, DetailItem> {
-//        return UICollectionView.CellRegistration<DetailTagCell, DetailItem> { [weak self] (cell, indexPath, item) in
-//            guard let self = self else { return }
-//
-//            cell.set(item: item, tag: self.place.tag)
-//        }
-//    }
+    func createTagCellRegistration() -> UICollectionView.CellRegistration<DetailTagCell, DetailItem> {
+        return UICollectionView.CellRegistration<DetailTagCell, DetailItem> { [weak self] (cell, indexPath, item) in
+            guard let self = self else { return }
+
+            cell.set(item: item, tag: self.place.tag)
+        }
+    }
     
     func createFavoriteCellRegistration() -> UICollectionView.CellRegistration<DetailFavoriteCell, DetailItem> {
         return UICollectionView.CellRegistration<DetailFavoriteCell, DetailItem> { [weak self] (cell, indexPath, item) in
@@ -253,7 +253,7 @@ class DetailsVC: BTPrimaryViewController {
     func configureDataSource() {
         let mapViewCellRegistration = createMapCellRegistration()
         let actionButtonCellRegistration = createActionButtonCellRegistration()
-        //let tagCellRegistration = createTagCellRegistration()
+        let tagCellRegistration = createTagCellRegistration()
         let favoriteCellRegistration = createFavoriteCellRegistration()
         let noteCellRegistration = createNoteCellRegistration()
         
@@ -273,9 +273,9 @@ class DetailsVC: BTPrimaryViewController {
                 
                 return collectionView.dequeueConfiguredReusableCell(using: actionButtonCellRegistration, for: indexPath, item: item)
                 
-//            case .tag:
-//
-//                return collectionView.dequeueConfiguredReusableCell(using: tagCellRegistration, for: indexPath, item: item)
+            case .tag:
+
+                return collectionView.dequeueConfiguredReusableCell(using: tagCellRegistration, for: indexPath, item: item)
                 
             case .favorite:
 
@@ -304,8 +304,8 @@ class DetailsVC: BTPrimaryViewController {
             case .actions:
                 return self.createActionButtonSection()
 
-//            case .tag:
-//                return self.createTagSection()
+            case .tag:
+                return self.createTagSection()
                 
             case .favorite:
                 return self.createFavoriteSection()
@@ -350,19 +350,19 @@ class DetailsVC: BTPrimaryViewController {
         return section
     }
     
-//    func createTagSection() -> NSCollectionLayoutSection {
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//
-//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(48))
-//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//
-//        let section = NSCollectionLayoutSection(group: group)
-//        section.orthogonalScrollingBehavior = .none
-//        section.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 20, bottom: 0, trailing: 20)
-//
-//        return section
-//    }
+    func createTagSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(48))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .none
+        section.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 20, bottom: 0, trailing: 20)
+
+        return section
+    }
     
     func createFavoriteSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
@@ -545,7 +545,7 @@ extension DetailsVC: UICollectionViewDelegate {
                 presentBTErrorAlertOnMainThread(error: .generalError, completion: nil)
             }
             
-        case .note, .favorite: return ()
+        case .note, .favorite, .tag: return ()
         }
     }
 }
@@ -554,7 +554,7 @@ extension DetailsVC: UICollectionViewDelegate {
 enum DetailSection: Int, CaseIterable, CustomStringConvertible {
     case map
     case actions
-    //case tag
+    case tag
     case favorite
     case note
 
@@ -562,7 +562,7 @@ enum DetailSection: Int, CaseIterable, CustomStringConvertible {
         switch self {
         case .map: return [.map]
         case .actions: return [.phone, .safari, .share, .navigate]
-        //case .tag: return [.tag]
+        case .tag: return [.tag]
         case .favorite: return [.favorite]
         case .note: return [.note]
         }
@@ -572,7 +572,7 @@ enum DetailSection: Int, CaseIterable, CustomStringConvertible {
         switch self {
         case .map: return "Map"
         case .actions: return "Actions"
-        //case .tag: return "Tag"
+        case .tag: return "Tag"
         case .favorite: return "Favorite"
         case .note: return "Note"
         }
@@ -585,7 +585,7 @@ enum DetailItem: CaseIterable {
     case safari
     case share
     case navigate
-    //case tag
+    case tag
     case favorite
     case note
 }
