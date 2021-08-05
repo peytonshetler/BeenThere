@@ -30,10 +30,10 @@ class PlaceTagCell: UITableViewCell {
         configure()
     }
     
-    func set(itemType: FormItem, tagCount: Int) {
+    func set(itemType: FormItem, tag: BTTag?) {
         self.type = itemType
         
-        label.text = "\(tagCount) tags selected"
+        label.text = tag != nil ? tag!.name : "Select a Tag"
     }
     
     required init?(coder: NSCoder) {

@@ -68,18 +68,7 @@ extension FavoritesVC: UISearchResultsUpdating, UISearchBarDelegate {
         case .tag:
             
             filteredPlaces = fetchedResultsController.fetchedObjects!.filter {
-                //$0.tag != nil ? Helpers.Regex.isMatch(pattern: filter, string: $0.tag!.name) : false
-                
-                if $0.tags != nil {
-                    
-                    let tagArray = $0.tags?.allObjects as! [BTTag]
-                    let matchingTags = tagArray.filter { $0.name.lowercased().contains(filter.lowercased())}
-                    
-                    return matchingTags.count > 0 ? true : false
-                    
-                } else {
-                    return false
-                }
+                $0.tag != nil ? Helpers.Regex.isMatch(pattern: filter, string: $0.tag!.name) : false
             }
             
         }

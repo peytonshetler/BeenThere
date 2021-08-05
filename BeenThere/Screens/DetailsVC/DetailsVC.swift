@@ -17,7 +17,6 @@ class DetailsVC: BTPrimaryViewController {
     let persistence = PersistenceService.shared
     
     var place: BTPlace!
-    var editButton: UIBarButtonItem!
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<DetailSection, DetailItem>!
@@ -45,102 +44,97 @@ class DetailsVC: BTPrimaryViewController {
         configureDataSource()
         updateSnapshot()
         
-//        navigationController?.isToolbarHidden = false
-//
-//
-//        configureTagCV()
-//        configureTagDataSource()
-//        updateTagSnapShot()
-//
-//        let button = UIBarButtonItem(customView: tagCollectionView)
-//
-//        toolbarItems = [ button]
+        navigationController?.isToolbarHidden = false
+        
+        
+        configureTagCV()
+        configureTagDataSource()
+        updateTagSnapShot()
+        
+        let button = UIBarButtonItem(customView: tagCollectionView)
+        
+        toolbarItems = [ button]
     }
     
     
-    // MARK: - TAG CV FUNCTIONS
-//    func configureTagCV() {
-//        tagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createTagLayout())
-//        tagCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        tagCollectionView.backgroundColor = .clear
-//
-//        tagCollectionView.alwaysBounceVertical = false
-//        tagCollectionView.alwaysBounceHorizontal = false
-//
-//        tagCollectionView.register(TestTagCell.self, forCellWithReuseIdentifier: TestTagCell.identifier)
-//        tagCollectionView.delegate = self
-//        tagCollectionView.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(tagCollectionView)
-//
-//        NSLayoutConstraint.activate([
-//            tagCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tagCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            tagCollectionView.heightAnchor.constraint(equalToConstant: 40)
-//        ])
-//    }
-//
-//
-//    func createTagLayout() -> UICollectionViewLayout {
-//
-//        let sectionProvider = { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-//
-//            guard let self = self else { return nil }
-//
-//            return self.createTestTagSection()
-//        }
-//
-//        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
-//    }
-//
-//    func createTestTagSection() -> NSCollectionLayoutSection {
-//        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .estimated(40))
-//        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//
-//        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(40))
-//        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//
-//        let section = NSCollectionLayoutSection(group: group)
-//        section.orthogonalScrollingBehavior = .continuous
-//        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
-//
-//        return section
-//    }
-//
-//    func createTestTagCellRegistration() -> UICollectionView.CellRegistration<TestTagCell, TagItem> {
-//        return UICollectionView.CellRegistration<TestTagCell, TagItem> { (cell, indexPath, item) in
-//
-//            cell.set(tag: item)
-//        }
-//    }
-//
-//    func updateTagSnapShot() {
-//        var tagItems: [TagItem] = []
-//
-//        if place.tags != nil {
-//            let tagArray = place.tags!.allObjects as! [BTTag]
-//
-//            for tag in tagArray {
-//                let tagItem = TagItem(managedTag: tag)
-//                tagItems.append(tagItem)
-//            }
-//        }
-//
-//        var snapshot = NSDiffableDataSourceSnapshot<TagSection, TagItem>()
-//        snapshot.appendSections([.main])
-//        snapshot.appendItems(tagItems)
-//
-//        DispatchQueue.main.async { self.tagDataSource.apply(snapshot, animatingDifferences: false) }
-//    }
+    func configureTagCV() {
+        tagCollectionView = UICollectionView(frame: .zero, collectionViewLayout: createTagLayout())
+        tagCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        tagCollectionView.backgroundColor = .clear
+        
+        tagCollectionView.alwaysBounceVertical = false
+        tagCollectionView.alwaysBounceHorizontal = true
+        
+        tagCollectionView.register(TestTagCell.self, forCellWithReuseIdentifier: TestTagCell.identifier)
+        tagCollectionView.delegate = self
+        tagCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tagCollectionView)
+        
+        NSLayoutConstraint.activate([
+            tagCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tagCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tagCollectionView.heightAnchor.constraint(equalToConstant: navigationController!.toolbar.frame.height)
+        ])
+    }
     
-//    func configureTagDataSource() {
-//        let tagCell = createTestTagCellRegistration()
-//
-//        tagDataSource = UICollectionViewDiffableDataSource<TagSection, TagItem>(collectionView: tagCollectionView) {
-//            (collectionView, indexPath, item) -> UICollectionViewCell? in
-//
-//            return collectionView.dequeueConfiguredReusableCell(using: tagCell, for: indexPath, item: item)
-//        }
-//    }
+    
+    func createTagLayout() -> UICollectionViewLayout {
+        
+        let sectionProvider = { [weak self] (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            guard let self = self else { return nil }
+            
+            return self.createTestTagSection()
+        }
+        
+        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+    }
+    
+    func createTestTagSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .estimated(40))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(40))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
+        
+        return section
+    }
+    
+    func createTestTagCellRegistration() -> UICollectionView.CellRegistration<TestTagCell, TagItem> {
+        return UICollectionView.CellRegistration<TestTagCell, TagItem> { (cell, indexPath, item) in
+
+            cell.set(tag: item)
+        }
+    }
+    
+    func updateTagSnapShot() {
+        var tagItems: [TagItem] = []
+        
+        let new = TagItem(managedTag: place.tag!)
+        
+        tagItems.append(new)
+        var snapshot = NSDiffableDataSourceSnapshot<TagSection, TagItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(tagItems)
+        
+        DispatchQueue.main.async { self.tagDataSource.apply(snapshot, animatingDifferences: false) }
+    }
+    
+    
+    // MARK: - Data Source
+    func configureTagDataSource() {
+        let tagCell = createTestTagCellRegistration()
+        
+        tagDataSource = UICollectionViewDiffableDataSource<TagSection, TagItem>(collectionView: tagCollectionView) {
+            (collectionView, indexPath, item) -> UICollectionViewCell? in
+            
+            return collectionView.dequeueConfiguredReusableCell(using: tagCell, for: indexPath, item: item)
+        }
+    }
     
     
     
@@ -185,9 +179,6 @@ class DetailsVC: BTPrimaryViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = place.name
         
-        editButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
-        navigationItem.rightBarButtonItem = editButton
-        
         if let roundedTitleDescriptor = UIFontDescriptor
             .preferredFontDescriptor(withTextStyle: .largeTitle)
             .withDesign(.rounded)?
@@ -197,10 +188,6 @@ class DetailsVC: BTPrimaryViewController {
                     .font: UIFont(descriptor: roundedTitleDescriptor, size: 24)
                 ]
         }
-    }
-    
-    @objc func editButtonTapped() {
-        print("edit!")
     }
     
     
@@ -481,7 +468,6 @@ class DetailsVC: BTPrimaryViewController {
 
 
 extension DetailsVC: DetailFavoriteCellDelegate, DetailNoteCellDelegate {
-    
     func updateFavoriteStatus(state: Bool) {
         self.place.isFavorite = state
         
@@ -499,7 +485,7 @@ extension DetailsVC: DetailFavoriteCellDelegate, DetailNoteCellDelegate {
     
     func updatePlaceNote(note: String) {
         self.place.note = note
-       
+        
         debounceAndSave(interval: 1.0)
     }
     

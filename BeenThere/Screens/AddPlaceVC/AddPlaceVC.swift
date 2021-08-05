@@ -26,7 +26,7 @@ class AddPlaceVC: UITableViewController {
 
     var name: String = ""
     var note: String?
-    var selectedTags: [BTTag] = []
+    var newTag: BTTag?
     var isFavorite: Bool = false
     
     var tagChanged: Bool = false
@@ -83,7 +83,6 @@ class AddPlaceVC: UITableViewController {
 
     @objc func addButtonTapped() {
         
-        // TO DO: Move all of this into savePlace function
         if name.isEmpty {
             presentBTErrorAlertOnMainThread(error: .emptyNameField, completion: nil)
             return
@@ -96,8 +95,7 @@ class AddPlaceVC: UITableViewController {
             return
         }
         
-        // TO DO: turn this into a dictionary
-        persistence.savePlace(name: name, isFavorite: isFavorite, note: note, item: item) { (result) in
+        persistence.savePlace(name: name, isFavorite: isFavorite, note: note, tag: newTag, item: item) { (result) in
 
             switch result {
             case .success:
@@ -112,17 +110,20 @@ class AddPlaceVC: UITableViewController {
 
 extension AddPlaceVC: NameCellDelegate, NoteCellDelegate, FavoriteCellDelegate, TagSelectDelegate {
     
-    func didSelectTags(tags: [BTTag]) {
+    func didSelectTag(tag: BTTag?) {
         
-        let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
-        tagChanged = true
-        
-        selectedTags = tags
-        
-        if tags.count > 0 {
-            tagCell.label.text = "\(tags.count) tags selected"
+        if tag != nil {
+            self.newTag = tag!
+            let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
+            tagCell.label.text = tag!.name
+            
+            tagChanged = true
         } else {
+            self.newTag = nil
+            let tagCell = tableView.cellForRow(at: [1, 0]) as! PlaceTagCell
             tagCell.label.text = "Select a Tag"
+            
+            tagChanged = false
         }
         
         handleAddButton()

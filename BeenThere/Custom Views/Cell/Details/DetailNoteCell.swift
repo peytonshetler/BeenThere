@@ -18,7 +18,7 @@ class DetailNoteCell: UICollectionViewCell {
     var note: String!
     
     let label = UILabel()
-    let noteTextView = UITextView()
+    let noteLabel = UITextView()
     
     var delegate: DetailNoteCellDelegate?
     
@@ -37,8 +37,7 @@ class DetailNoteCell: UICollectionViewCell {
         self.note = note
         self.delegate = delegate
         
-        noteTextView.text = note
-        noteTextView.resolveTags()
+        noteLabel.text = note
     }
     
     
@@ -48,7 +47,7 @@ class DetailNoteCell: UICollectionViewCell {
     
    
     func configure() {
-        views = [label, noteTextView]
+        views = [label, noteLabel]
         for view in views {
             contentView.addSubview(view)
             view.translatesAutoresizingMaskIntoConstraints = false
@@ -62,12 +61,12 @@ class DetailNoteCell: UICollectionViewCell {
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 17)
         
-        noteTextView.textColor = .secondaryLabel
-        noteTextView.backgroundColor = .clear
-        noteTextView.font = UIFont.systemFont(ofSize: 18)
-        noteTextView.textContainerInset = .zero
-        noteTextView.textContainer.lineFragmentPadding = 0.0
-        noteTextView.delegate = self
+        noteLabel.textColor = .secondaryLabel
+        noteLabel.backgroundColor = .clear
+        noteLabel.font = UIFont.systemFont(ofSize: 18)
+        noteLabel.textContainerInset = .zero
+        noteLabel.textContainer.lineFragmentPadding = 0.0
+        noteLabel.delegate = self
         
         updateUIStyle()
         
@@ -76,10 +75,10 @@ class DetailNoteCell: UICollectionViewCell {
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 14),
             label.heightAnchor.constraint(equalToConstant: 20),
             
-            noteTextView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 14),
-            noteTextView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 12),
-            noteTextView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -14),
-            noteTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -14)
+            noteLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 14),
+            noteLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 12),
+            noteLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -14),
+            noteLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -14)
         ])
     }
 }

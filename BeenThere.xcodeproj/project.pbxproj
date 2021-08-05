@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		790E456A265C8B2F0047E5B5 /* BTList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E4568265C8B2F0047E5B5 /* BTList+CoreDataClass.swift */; };
-		790E456B265C8B2F0047E5B5 /* BTList+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790E4569265C8B2F0047E5B5 /* BTList+CoreDataProperties.swift */; };
-		79198F76266860C5001E786D /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79198F75266860C5001E786D /* String+Ext.swift */; };
-		79198F78266861C4001E786D /* UITextView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79198F77266861C4001E786D /* UITextView+Ext.swift */; };
 		792B5C2E264F57DD00CDD608 /* PlacesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */; };
 		79361AB12659E98D00ED43DC /* SharedPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361AB02659E98D00ED43DC /* SharedPlace.swift */; };
 		79361AB32659ED1400ED43DC /* SharedLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361AB22659ED1400ED43DC /* SharedLocation.swift */; };
@@ -87,11 +83,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		790E4567265C86D40047E5B5 /* BeenThere v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BeenThere v2.xcdatamodel"; sourceTree = "<group>"; };
-		790E4568265C8B2F0047E5B5 /* BTList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BTList+CoreDataClass.swift"; sourceTree = "<group>"; };
-		790E4569265C8B2F0047E5B5 /* BTList+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BTList+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		79198F75266860C5001E786D /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
-		79198F77266861C4001E786D /* UITextView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Ext.swift"; sourceTree = "<group>"; };
 		792B5C2D264F57DD00CDD608 /* PlacesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesCellViewModel.swift; sourceTree = "<group>"; };
 		79361AB02659E98D00ED43DC /* SharedPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedPlace.swift; sourceTree = "<group>"; };
 		79361AB22659ED1400ED43DC /* SharedLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedLocation.swift; sourceTree = "<group>"; };
@@ -215,8 +206,6 @@
 			children = (
 				7942E1512630C1D900CEC9A4 /* UIViewController+Ext.swift */,
 				7942E1552630C20B00CEC9A4 /* UILabel+Ext.swift */,
-				79198F75266860C5001E786D /* String+Ext.swift */,
-				79198F77266861C4001E786D /* UITextView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -500,8 +489,6 @@
 			isa = PBXGroup;
 			children = (
 				79361AAF2659E96D00ED43DC /* Share */,
-				790E4568265C8B2F0047E5B5 /* BTList+CoreDataClass.swift */,
-				790E4569265C8B2F0047E5B5 /* BTList+CoreDataProperties.swift */,
 				7942E1F92630CC7100CEC9A4 /* BTPlace+CoreDataClass.swift */,
 				7942E1FA2630CC7100CEC9A4 /* BTPlace+CoreDataProperties.swift */,
 				7942E1FB2630CC7100CEC9A4 /* BTTag+CoreDataClass.swift */,
@@ -615,10 +602,8 @@
 				7942E1982630C7E300CEC9A4 /* ActionButtonCell.swift in Sources */,
 				7942E18D2630C7B500CEC9A4 /* TagSelectCell.swift in Sources */,
 				7942E1602630C31400CEC9A4 /* BTError.swift in Sources */,
-				79198F76266860C5001E786D /* String+Ext.swift in Sources */,
 				79361AB32659ED1400ED43DC /* SharedLocation.swift in Sources */,
 				7942E1BB2630C86C00CEC9A4 /* TagSelectVC.swift in Sources */,
-				79198F78266861C4001E786D /* UITextView+Ext.swift in Sources */,
 				7942E1522630C1D900CEC9A4 /* UIViewController+Ext.swift in Sources */,
 				792B5C2E264F57DD00CDD608 /* PlacesCellViewModel.swift in Sources */,
 				7942E1EB2630C97B00CEC9A4 /* PlacesVC+UI.swift in Sources */,
@@ -642,7 +627,6 @@
 				7942E1CA2630C90200CEC9A4 /* SettingsVC+TableView.swift in Sources */,
 				7942E1782630C6A000CEC9A4 /* BTPrimaryTableViewController.swift in Sources */,
 				7942E2032630CC7100CEC9A4 /* BTLocation+CoreDataClass.swift in Sources */,
-				790E456B265C8B2F0047E5B5 /* BTList+CoreDataProperties.swift in Sources */,
 				7942E1722630C69400CEC9A4 /* BTTabBarController.swift in Sources */,
 				7942E1DE2630C95900CEC9A4 /* FavoritesVC+SearchBar.swift in Sources */,
 				79361AB12659E98D00ED43DC /* SharedPlace.swift in Sources */,
@@ -659,7 +643,6 @@
 				7942E1562630C20B00CEC9A4 /* UILabel+Ext.swift in Sources */,
 				7942E2042630CC7100CEC9A4 /* BTLocation+CoreDataProperties.swift in Sources */,
 				7942E1AC2630C82E00CEC9A4 /* NoteCell.swift in Sources */,
-				790E456A265C8B2F0047E5B5 /* BTList+CoreDataClass.swift in Sources */,
 				7942E1E92630C97B00CEC9A4 /* PlacesVC+TableView.swift in Sources */,
 				79F1C3652630B49300CBDD2B /* SceneDelegate.swift in Sources */,
 				7942E1772630C6A000CEC9A4 /* FirstTimeUserVC.swift in Sources */,
@@ -875,10 +858,9 @@
 		79F1C36B2630B49300CBDD2B /* BeenThere.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				790E4567265C86D40047E5B5 /* BeenThere v2.xcdatamodel */,
 				79F1C36C2630B49300CBDD2B /* BeenThere.xcdatamodel */,
 			);
-			currentVersion = 790E4567265C86D40047E5B5 /* BeenThere v2.xcdatamodel */;
+			currentVersion = 79F1C36C2630B49300CBDD2B /* BeenThere.xcdatamodel */;
 			path = BeenThere.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

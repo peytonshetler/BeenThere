@@ -20,25 +20,8 @@ extension BTPlace {
     @NSManaged public var isFavorite: Bool
     @NSManaged public var name: String
     @NSManaged public var note: String
-    @NSManaged public var tags: NSSet?
+    @NSManaged public var tag: BTTag?
     @NSManaged public var location: BTLocation?
-    @NSManaged public var list: BTList?
-}
-
-// MARK: Generated accessors for places
-extension BTPlace {
-
-    @objc(addTagObject:)
-    @NSManaged public func addToTags(_ value: BTTag)
-
-    @objc(removeTagObject:)
-    @NSManaged public func removeFromTags(_ value: BTTag)
-
-    @objc(addTags:)
-    @NSManaged public func addToTags(_ values: NSSet)
-
-    @objc(removeTags:)
-    @NSManaged public func removeFromTags(_ values: NSSet)
 
 }
 

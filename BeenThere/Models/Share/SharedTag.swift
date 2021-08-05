@@ -7,14 +7,14 @@
 
 import Foundation
 
-//
-//struct SharedTag: Codable {
-//    
-//    var id: UUID
-//    var name: String
-//    
-//    init(tag: BTTag) {
-//        self.id = tag.id!
-//        self.name = tag.name
-//    }
-//}
+
+struct SharedTag: Codable {
+    
+    var id: UUID
+    var name: String
+    
+    init(tag: BTTag) {
+        self.id = tag.id!
+        self.name = tag.name
+    }
+}

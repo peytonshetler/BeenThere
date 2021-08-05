@@ -114,9 +114,15 @@ class PersistenceService {
         return tag
     }
     
-    
-    func convertItemToLocation(item: MKMapItem) -> BTLocation {
+    func savePlace(name: String, isFavorite: Bool = false, note: String?, tag: BTTag?, item: MKMapItem, completion: @escaping completionWithEither) {
         
+        let place = BTPlace(context: context)
+        place.name = name
+        place.isFavorite = isFavorite
+        
+        place.tag = tag
+    
+        // TO DO:  Extract this into it's own function. Get rid of nil-coalescing, these values already have default values in the core data entity.
         let location = BTLocation(context: context)
         location.subThoroughfare = item.placemark.subThoroughfare ?? ""
         location.thoroughfare = item.placemark.thoroughfare ?? ""
@@ -129,45 +135,13 @@ class PersistenceService {
         location.latitude = item.placemark.coordinate.latitude
         location.longitude = item.placemark.coordinate.longitude
         
-        return location
-    }
-    
-    
-    func savePlace(name: String, isFavorite: Bool = false, note: String?, item: MKMapItem, completion: @escaping completionWithEither) {
-        
-        let place = BTPlace(context: context)
-        
-        place.name = name
-        place.isFavorite = isFavorite
-        place.location = convertItemToLocation(item: item)
-        
-        var tags: [BTTag] = []
+        place.location = location
 
+        
         if let unwrappedNote = note, !unwrappedNote.isEmpty {
             place.note = note!
-            
-            let tagStrings = note!.getHashtags()
-            
-            for nameString in tagStrings {
-                
-                let existingTag = getTagIfExists(name: nameString)
-                
-                if existingTag != nil {
-                    tags.append(existingTag!)
-                } else {
-                    let newTag = BTTag(context: context)
-                    newTag.name = nameString
-                    
-                    tags.append(newTag)
-                }
-            }
         }
         
-        
-        if tags.count > 0 {
-            let tagSet = NSSet(array: tags)
-            place.addToTags(tagSet)
-        }
         
         if context.hasChanges {
             
